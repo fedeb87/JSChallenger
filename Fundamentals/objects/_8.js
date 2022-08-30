@@ -3,5 +3,10 @@
 // Return the object
 
 function myFunction(a, b){
-    return obj.country;
+    return a.reduce((prev, current, index) => {
+        return {
+           ...prev,
+          [current]: b[index]
+        }
+      },{})
 }

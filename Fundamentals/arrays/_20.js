@@ -5,16 +5,24 @@
 // For example, the array ['Alf', 'Alice', 'Ben'] should be transformed to
 // { a: ['Alf', 'Alice'], b: ['Ben']}
 
+
+/* Author's solution
+
+    return arr.reduce((acc, cur) => {
+    const firstLetter = cur.toLowerCase().charAt(0);
+    return { ...acc, [firstLetter]: [...(acc[firstLetter] || []), cur] };
+    }, {});
+*/
+
 function myFunction(arr) {
-    const solution = new Map();
-    arr.forEach(element => {
-        let index = element.charAt(0).toLowerCase();
-        if(solution.has(index))
-            solution.set(index,solution.get(index).concat([element]));
-        else
-            solution.set(index,[element]);
-    });
-    return solution;
+    const result =  arr.reduce((prev, current) => {
+    const initial = current.split('')[0].toLowerCase();
+    return { 
+        ...prev, 
+        [initial]: [...(prev[initial] ?? []), current] 
+    };
+    }, {});
+    return result;
 }
 
 console.log(myFunction(['Alf', 'Alice', 'Ben']));
